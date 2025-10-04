@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทความและเคล็ดลับ | TRAIN LIKE A PRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+            --shadow-strong: rgba(0, 230, 118, 0.2);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--primary-surface);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--shadow-strong);
+            text-align: left;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .article-card {
+            background-color: var(--secondary-surface);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-strong);
+        }
+
+        .article-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .article-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .article-card small {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content-page {
+            margin-top: 30px;
+        }
+
+        .article-content-page h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .article-content-page p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content-page ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content-page li {
+            background-color: var(--primary-surface);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <a href="index.html" class="back-link">กลับหน้าหลัก</a>
+        </div>
+        <h1>บทความและเคล็ดลับจากผู้เชี่ยวชาญ</h1>
+        <p style="text-align: center; color: var(--text-secondary);">
+            แหล่งข้อมูลสำคัญที่จะช่วยให้คุณพัฒนาทักษะได้แบบองค์รวม
+        </p>
+
+        <div id="articles-list" class="article-list">
+            </div>
+
+        <div id="article-content" class="article-content-page" style="display:none;">
+            </div>
+
+    </div>
+
+    <script>
+        const articles = [
+            {
+                id: 'nutrition',
+                title: 'โภชนาการสำหรับนักฟุตบอล: กินอย่างไรให้ฟิตและพร้อมลงสนาม',
+                date: '4 ตุลาคม 2568',
+                summary: 'เรียนรู้หลักการกินที่ถูกต้องเพื่อเพิ่มประสิทธิภาพในการเล่นและการฟื้นตัว',
+                content: `
+                    <p>การฝึกซ้อมที่หนักหน่วงต้องมาพร้อมกับโภชนาการที่เหมาะสม เพื่อให้ร่างกายได้รับพลังงานที่เพียงพอและฟื้นตัวได้อย่างรวดเร็ว</p>
+                    <h3>สิ่งที่ควรให้ความสำคัญ:</h3>
+                    <ul>
+                        <li><strong>คาร์โบไฮเดรต:</strong> เป็นแหล่งพลังงานหลัก ควรบริโภคอาหารประเภทข้าว, ขนมปังโฮลวีท, พาสต้า, หรือมันฝรั่งก่อนการฝึกซ้อมเพื่อเติมพลังงาน</li>
+                        <li><strong>โปรตีน:</strong> ช่วยในการซ่อมแซมและสร้างกล้ามเนื้อ ควรทานหลังการฝึกซ้อม เช่น เนื้อปลา, เนื้อไก่, ไข่, หรือนม</li>
+                        <li><strong>ไขมันดี:</strong> สำคัญต่อการทำงานของสมองและร่างกาย ควรทานในปริมาณที่พอเหมาะจากแหล่งอย่างอะโวคาโด, ถั่ว, หรือน้ำมันมะกอก</li>
+                        <li><strong>การดื่มน้ำ:</strong> ดื่มน้ำเปล่าให้เพียงพอตลอดทั้งวัน โดยเฉพาะก่อน ระหว่าง และหลังการฝึกซ้อมเพื่อป้องกันภาวะขาดน้ำ</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'injury-prevention',
+                title: 'เคล็ดลับป้องกันอาการบาดเจ็บ: ยืดเหยียดและวอร์มอัพที่ถูกต้อง',
+                date: '10 ตุลาคม 2568',
+                summary: 'การป้องกันดีกว่าการรักษาเสมอ! มาดูกันว่าคุณควรวอร์มอัพอย่างไรเพื่อลดความเสี่ยงในการบาดเจ็บ',
+                content: `
+                    <p>อาการบาดเจ็บเป็นสิ่งที่นักฟุตบอลทุกคนไม่อยากเจอ การวอร์มอัพและคูลดาวน์ที่ถูกต้องจึงเป็นเรื่องสำคัญที่ไม่ควรมองข้าม</p>
+                    <h3>ขั้นตอนที่ควรทำ:</h3>
+                    <ul>
+                        <li><strong>วอร์มอัพ (Warm-up):</strong> ก่อนการฝึกซ้อมหรือแข่งขัน ควรวิ่งเหยาะๆ 5-10 นาที ตามด้วยการยืดเหยียดแบบเคลื่อนไหว (Dynamic Stretching) เช่น การเตะขาไปข้างหน้าและด้านข้าง เพื่อเตรียมกล้ามเนื้อให้พร้อม</li>
+                        <li><strong>คูลดาวน์ (Cool-down):</strong> หลังการฝึกซ้อม ควรวิ่งเบาๆ และตามด้วยการยืดเหยียดแบบค้าง (Static Stretching) เช่น การยืดกล้ามเนื้อต้นขาด้านหลังและด้านหน้า ค้างไว้ท่าละ 20-30 วินาที เพื่อช่วยให้กล้ามเนื้อผ่อนคลายและลดอาการปวดเมื่อย</li>
+                    </ul>
+                `
+            }
+        ];
+
+        const articlesListElem = document.getElementById('articles-list');
+        const articleContentElem = document.getElementById('article-content');
+        const containerElem = document.querySelector('.container');
+
+        function displayArticlesList() {
+            articlesListElem.innerHTML = '';
+            articles.forEach(article => {
+                const articleCard = document.createElement('a');
+                articleCard.href = `#${article.id}`;
+                articleCard.className = 'article-card';
+                articleCard.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p>${article.summary}</p>
+                    <small>เผยแพร่เมื่อ: ${article.date}</small>
+                `;
+                articleCard.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    displayArticleContent(article.id);
+                });
+                articlesListElem.appendChild(articleCard);
+            });
+            articlesListElem.style.display = 'grid';
+            articleContentElem.style.display = 'none';
+        }
+
+        function displayArticleContent(articleId) {
+            const article = articles.find(a => a.id === articleId);
+            if (!article) {
+                console.error("Article not found");
+                return;
+            }
+
+            articleContentElem.innerHTML = `
+                <div class="header-controls">
+                    <a href="articles.html" class="back-link">กลับสู่บทความทั้งหมด</a>
+                </div>
+                <h2>${article.title}</h2>
+                <small style="display: block; text-align: left; margin-bottom: 20px;">เผยแพร่เมื่อ: ${article.date}</small>
+                ${article.content}
+            `;
+            articlesListElem.style.display = 'none';
+            articleContentElem.style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top
+        }
+
+        // Handle navigation via URL hash
+        window.addEventListener('hashchange', () => {
+            const articleId = window.location.hash.substring(1);
+            if (articleId) {
+                displayArticleContent(articleId);
+            } else {
+                displayArticlesList();
+            }
+        });
+
+        // Initial page load check
+        if (window.location.hash) {
+            displayArticleContent(window.location.hash.substring(1));
+        } else {
+            displayArticlesList();
+        }
+
+    </script>
+</body>
+</html>

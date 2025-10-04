@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฝึกเฉพาะตำแหน่ง | TRAIN LIKE A PRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+            --shadow-strong: rgba(0, 230, 118, 0.2);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: var(--primary-surface);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--shadow-strong);
+            text-align: left;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .position-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .position-button {
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .position-button.active,
+        .position-button:hover {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-strong);
+        }
+
+        .position-content {
+            background-color: var(--secondary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .position-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .position-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .position-content p, .position-content li {
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .player-profile {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--primary-surface);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .player-profile-text {
+            flex: 1;
+        }
+
+        .player-profile-text h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .link-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-strong);
+        }
+        
+        .cta-link:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-strong);
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .list-item {
+            background-color: var(--primary-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .list-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <a href="index.html" class="back-link">กลับหน้าหลัก</a>
+        </div>
+        <h1>โปรแกรมฝึกซ้อมเฉพาะตำแหน่ง</h1>
+        <p style="text-align: center; color: var(--text-secondary);">
+            ยกระดับการเล่นของคุณด้วยโปรแกรมที่ออกแบบมาเพื่อแต่ละตำแหน่งโดยเฉพาะ
+        </p>
+
+        <div class="position-tabs">
+            <button id="goalkeeper-btn" class="position-button active">ผู้รักษาประตู</button>
+            <button id="defender-btn" class="position-button">กองหลัง</button>
+            <button id="midfielder-btn" class="position-button">กองกลาง</button>
+            <button id="forward-btn" class="position-button">กองหน้า</button>
+        </div>
+
+        <div class="position-content">
+            <h2 id="position-title"></h2>
+            <div id="position-details">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const positionalData = {
+            goalkeeper: {
+                title: "ผู้รักษาประตู",
+                description: "ผู้รักษาประตูเป็นด่านสุดท้ายของทีม ต้องมีปฏิกิริยาที่รวดเร็ว การตัดสินใจที่แม่นยำ และความสามารถในการสื่อสารที่ยอดเยี่ยม",
+                player: {
+                    name: "มานูเอล นอยเออร์ (Manuel Neuer)",
+                    team: "บาเยิร์น มิวนิค",
+                    desc: "เขาปฏิวัติบทบาทผู้รักษาประตูให้เป็น 'สวีปเปอร์-คีปเปอร์' ที่เล่นเกมรับนอกกรอบเขตโทษเหมือนกองหลังตัวสุดท้าย",
+                    wiki: "https://th.wikipedia.org/wiki/%E0%B8%A1%E0%B8%B2%E0%B8%99%E0%B8%B9%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%A5_%E0%B8%99%E0%B9%87%E0%B8%AD%E0%B8%A2%E0%B9%80%E0%B8%AD%E0%B8%AD%E0%B8%A3%E0%B9%8C"
+                },
+                drills: [
+                    { title: "1. การจับบอล (Handling Drills)", desc: "ฝึกรับลูกบอลที่มาในรูปแบบต่างๆ ทั้งลูกเรียด, ลูกโด่ง, และลูกเลียดจากลูกยิงหรือลูกเตะมุม เพื่อเพิ่มความมั่นใจและป้องกันการทำบอลหลุดมือ" },
+                    { title: "2. การพุ่งเซฟ (Diving Drills)", desc: "ฝึกการพุ่งตัวไปด้านข้างเพื่อรับหรือปัดบอลจากลูกยิงที่หลากหลาย ทั้งจากลูกยิงใกล้และไกล รวมถึงการเซฟลูกโทษ" },
+                    { title: "3. การตัดสินใจ (Decision Making)", desc: "ฝึกการตัดสินใจว่าจะออกไปตัดบอลในจังหวะสวนกลับ หรือยืนรอในกรอบเขตโทษ รวมถึงการยืนตำแหน่งในสถานการณ์ลูกตั้งเตะ" },
+                    { title: "4. การเปิดบอล (Distribution)", desc: "ฝึกการเปิดบอลยาวด้วยมือหรือเท้าเพื่อเริ่มเกมสวนกลับอย่างรวดเร็ว รวมถึงการส่งบอลสั้นให้เพื่อนในสถานการณ์ที่ต้องการครองบอล" }
+                ],
+                tips: "ต้องมีความคล่องตัว, มีวิสัยทัศน์กว้างไกล, และมีภาวะผู้นำในการสั่งการแผงหลัง"
+            },
+            defender: {
+                title: "กองหลัง",
+                description: "กองหลังคือกำแพงของทีม นอกจากจะป้องกันแล้วยังต้องเริ่มเกมรุกด้วยการจ่ายบอลที่แม่นยำและอ่านเกมคู่แข่ง",
+                player: {
+                    name: "เซร์คิโอ รามอส (Sergio Ramos)",
+                    team: "เซบิยา",
+                    desc: "เป็นกองหลังที่ครบเครื่อง มีความแข็งแกร่งในการเข้าปะทะ การโหม่งทำประตู และเป็นผู้นำในแนวรับ",
+                    wiki: "https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%8B%E0%B8%A3%E0%B9%8C%E0%B8%86%E0%B8%B4%E0%B9%82%E0%B8%AD_%E0%B8%A3%E0%B8%B2%E0%B9%82%E0%B8%A1%E0%B8%AA"
+                },
+                drills: [
+                    { title: "1. การยืนตำแหน่ง (Positioning)", desc: "ฝึกการยืนในแนวรับร่วมกับคู่หู เช็คล้ำหน้า และการยืนป้องกันแบบโซนเพื่อให้พื้นที่ว่างน้อยที่สุด" },
+                    { title: "2. การสกัดบอล (Tackling & Intercepting)", desc: "ฝึกการเข้าสกัดบอลที่ถูกต้องโดยไม่ฟาวล์ และการอ่านทางบอลของคู่แข่งเพื่อดักตัดบอลก่อนถึงตัวผู้เล่น" },
+                    { title: "3. การโหม่ง (Heading)", desc: "ฝึกการโหม่งสกัดจากลูกครอสและการโหม่งเพื่อส่งบอลกลับให้เพื่อนร่วมทีม" },
+                    { title: "4. การสื่อสาร (Communication)", desc: "สื่อสารกับเพื่อนร่วมทีมเพื่อจัดระเบียบแนวรับให้แน่นหนา และบอกตำแหน่งให้ผู้เล่นอื่น" }
+                ],
+                tips: "ต้องมีความแข็งแกร่งทางร่างกาย, การเข้าปะทะที่แม่นยำ, และความสามารถในการอ่านเกม"
+            },
+            midfielder: {
+                title: "กองกลาง",
+                description: "หัวใจของทีมที่เชื่อมเกมรุกและเกมรับเข้าด้วยกัน ต้องมีวิสัยทัศน์กว้างไกลและจ่ายบอลได้แม่นยำ",
+                player: {
+                    name: "เควิน เดอ บรอยน์ (Kevin De Bruyne)",
+                    team: "แมนเชสเตอร์ ซิตี้",
+                    desc: "เป็นนักเตะที่มีวิสัยทัศน์การจ่ายบอลที่ยอดเยี่ยม สามารถสร้างโอกาสทำประตูได้จากทุกพื้นที่ในสนาม",
+                    wiki: "https://en.wikipedia.org/wiki/Kevin_De_Bruyne"
+                },
+                drills: [
+                    { title: "1. การครองบอล (Ball Retention)", desc: "ฝึกการครองบอลภายใต้แรงกดดันจากคู่แข่ง และการจ่ายบอลที่แม่นยำเพื่อรักษาจังหวะการเล่นของทีม" },
+                    { title: "2. การจ่ายบอล (Passing)", desc: "ฝึกจ่ายบอลสั้น-ยาว, การจ่ายบอลทะลุช่อง และการทำชิ่ง (One-two) เพื่อเจาะแนวรับคู่แข่ง" },
+                    { title: "3. วิสัยทัศน์ (Vision)", desc: "ฝึกมองหาพื้นที่ว่างและการเคลื่อนที่ของเพื่อนร่วมทีมอยู่เสมอ เพื่อสร้างโอกาสในการจ่ายบอล" },
+                    { title: "4. การเข้าทำ (Attacking Midfield)", desc: "ฝึกการเติมเกมรุกในจังหวะที่เหมาะสม และการยิงไกลนอกกรอบเขตโทษเพื่อเป็นอีกทางเลือกในการทำประตู" }
+                ],
+                tips: "ต้องมีวิสัยทัศน์, ความคิดสร้างสรรค์, และความทนทานของร่างกายในการเล่นเกมรุกและรับ"
+            },
+            forward: {
+                title: "กองหน้า",
+                description: "ผู้เล่นที่ทำหน้าที่จบสกอร์ ต้องมีความสามารถในการหาพื้นที่ว่าง, ความเร็ว และสัญชาตญาณในการทำประตู",
+                player: {
+                    name: "เออร์ลิง ฮาลันด์ (Erling Haaland)",
+                    team: "แมนเชสเตอร์ ซิตี้",
+                    desc: "เป็นกองหน้าที่มีสัญชาตญาณในการทำประตูสูงมาก มีความแข็งแกร่งและคล่องแคล่วเกินตัว",
+                    wiki: "https://en.wikipedia.org/wiki/Erling_Haaland"
+                },
+                drills: [
+                    { title: "1. การจบสกอร์ (Finishing)", desc: "ฝึกการยิงประตูจากหลายรูปแบบ ทั้งการยิงด้วยเท้า, การโหม่ง, และการเข้าชาร์จ รวมถึงการฝึก One-touch finishing" },
+                    { title: "2. การเคลื่อนที่ (Movement)", desc: "ฝึกการหาพื้นที่ว่าง การวิ่งทำทาง และการสลัดตัวหนีตัวประกบ เพื่อสร้างโอกาสให้เพื่อนร่วมทีมจ่ายบอล" },
+                    { title: "3. การพักบอล (Receiving)", desc: "ฝึกการพักบอลจากลูกโยนยาวและการพลิกบอลเพื่อเข้าโจมตีในจังหวะที่รวดเร็ว" },
+                    { title: "4. การเพรสซิ่ง (Pressing)", desc: "ฝึกการเข้ากดดันแนวรับของคู่แข่งเพื่อแย่งบอลคืนในแดนหน้า และสร้างความผิดพลาดให้คู่แข่ง" }
+                ],
+                tips: "ต้องมีความสามารถในการจบสกอร์ที่เฉียบขาด, การเคลื่อนที่ที่ชาญฉลาด และความแข็งแกร่งในการปะทะ"
+            }
+        };
+
+        const buttons = document.querySelectorAll('.position-button');
+        const positionTitleElem = document.getElementById('position-title');
+        const positionDetailsElem = document.getElementById('position-details');
+
+        function displayPositionalTraining(position) {
+            const data = positionalData[position];
+            positionTitleElem.textContent = data.title;
+
+            let htmlContent = `
+                <p>${data.description}</p>
+                <div class="player-profile">
+                    <div class="player-profile-text">
+                        <h4>${data.player.name}</h4>
+                        <p><strong>ทีม:</strong> ${data.player.team}</p>
+                        <p>${data.player.desc}</p>
+                        <p><a href="${data.player.wiki}" target="_blank" rel="noopener noreferrer">อ่านเพิ่มเติมบน Wikipedia</a></p>
+                    </div>
+                </div>
+
+                <h3>การฝึกซ้อมหลัก</h3>
+                <div class="list-container">
+            `;
+
+            data.drills.forEach(drill => {
+                htmlContent += `
+                    <div class="list-item">
+                        <h4>${drill.title}</h4>
+                        <p>${drill.desc}</p>
+                    </div>
+                `;
+            });
+            htmlContent += `</div>`;
+
+            htmlContent += `
+                <h3>คุณสมบัติที่สำคัญ</h3>
+                <p style="text-align: center;">${data.tips}</p>
+            `;
+
+            positionDetailsElem.innerHTML = htmlContent;
+        }
+
+        function handleButtonClick(event) {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const ageGroup = event.target.id.replace('-btn', '');
+            displayPositionalTraining(ageGroup);
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', handleButtonClick);
+        });
+
+        // Initial display
+        displayPositionalTraining('goalkeeper');
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างโปรแกรมเฉพาะตัว</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+        }
+
+        body.light-mode {
+            --background-dark: #f0f2f5;
+            --primary-surface: #ffffff;
+            --secondary-surface: #e5e7eb;
+            --accent-color: #00897b;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-color: #cbd5e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 1)), url('https://images.pexels.com/photos/942872/pexels-photo-942872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        body.light-mode .hero {
+            background: linear-gradient(rgba(240, 242, 245, 0.8), rgba(240, 242, 245, 1)), url('https://images.pexels.com/photos/942872/pexels-photo-942872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        
+        #toggle-theme-btn {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        #toggle-theme-btn:hover {
+            background-color: var(--secondary-surface);
+        }
+
+        .main-content {
+            background-color: var(--primary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+        
+        .main-content h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group select,
+        .form-group button {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-group button {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-group button:hover {
+            background-color: #00b359;
+        }
+
+        #personalized-program-output {
+            margin-top: 2.5rem;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 2.5rem;
+        }
+        
+        #personalized-program-output .program-item {
+            margin-bottom: 2rem;
+        }
+
+        #personalized-program-output .program-item h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        #personalized-program-output .program-item p {
+            color: var(--text-secondary);
+        }
+        
+        #personalized-program-output .cta-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.2);
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>สร้างโปรแกรม <span>เฉพาะตัว</span></h1>
+        <p>ออกแบบเส้นทางการฝึกซ้อมของคุณเอง เพื่อให้บรรลุเป้าหมายที่ตั้งไว้</p>
+    </header>
+
+    <main class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <a href="index.html" class="back-button">← กลับสู่หน้าหลัก</a>
+            <button id="toggle-theme-btn">สลับโหมด</button>
+        </div>
+        
+        <section class="main-content">
+            <h2>กำหนดเป้าหมายของคุณ</h2>
+            <form id="program-form">
+                <div class="form-group">
+                    <label for="goal-select">เลือกเป้าหมายการฝึกซ้อมหลัก:</label>
+                    <select id="goal-select">
+                        <option value="fitness">เพิ่มความฟิตและความทนทาน</option>
+                        <option value="technique">พัฒนาทักษะเฉพาะด้าน (เลี้ยง, ส่ง, ยิง)</option>
+                        <option value="game-sense">เรียนรู้แท็กติกและการตัดสินใจ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">สร้างโปรแกรม</button>
+                </div>
+            </form>
+            
+            <div id="personalized-program-output">
+                <p class="empty-state">เลือกเป้าหมายและกด "สร้างโปรแกรม" เพื่อดูโปรแกรมสำหรับคุณ!</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const programs = {
+            fitness: [
+                { title: "วิ่งอินเทอร์วัล (Interval Running)", desc: "วิ่งสลับความเร็ว 1 นาที, วิ่งช้า 2 นาที ทำซ้ำ 10 รอบ" },
+                { title: "ฝึกความแข็งแกร่ง (Strength & Conditioning)", desc: "สควอท, แพลงก์, วิดพื้น และลันจ์ อย่างละ 3 เซ็ต" },
+                { title: "ฟื้นฟูร่างกาย (Recovery Day)", desc: "ยืดเหยียดกล้ามเนื้อทั่วร่างกาย และใช้โฟมโรลเลอร์" }
+            ],
+            technique: [
+                { title: "ทักษะการเลี้ยงลูกบอล (Dribbling Drills)", desc: "ฝึกเลี้ยงลูกบอลหลบกรวยและเปลี่ยนทิศทางด้วยเท้าทั้งสองข้าง" },
+                { title: "การส่งบอล (Passing Practice)", desc: "ฝึกส่งบอลระยะสั้นและระยะกลางด้วยข้างเท้าด้านใน เน้นความแม่นยำ" },
+                { title: "การยิงประตู (Shooting Drills)", desc: "ฝึกยิงประตูจากหลายมุม และยิงจากระยะนอกกรอบเขตโทษ" }
+            ],
+            'game-sense': [
+                { title: "เกมลิงชิงบอล (Rondo)", desc: "เล่นลิงชิงบอล 4v1 หรือ 5v2 เพื่อฝึกการครองบอลและการตัดสินใจภายใต้แรงกดดัน" },
+                { title: "เกมในสนามขนาดเล็ก (Small-sided Games)", desc: "เล่นเกม 3v3 หรือ 4v4 เพื่อพัฒนาการเคลื่อนที่แบบไม่มีบอลและหาพื้นที่ว่าง" },
+                { title: "การวิเคราะห์เกม", desc: "ดูคลิปการแข่งขันฟุตบอลแล้ววิเคราะห์การยืนตำแหน่งและการเคลื่อนที่ของนักเตะอาชีพ" }
+            ]
+        };
+
+        const form = document.getElementById('program-form');
+        const output = document.getElementById('personalized-program-output');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const goal = document.getElementById('goal-select').value;
+            const programData = programs[goal];
+            
+            let htmlContent = `<h2>โปรแกรมฝึกซ้อมของคุณ</h2>`;
+            programData.forEach(item => {
+                htmlContent += `
+                    <div class="program-item">
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+            });
+            
+            htmlContent += `<a href="https://www.youtube.com/results?search_query=personalized+football+drills" class="cta-link" target="_blank">ดูคลิปเพิ่มเติม</a>`;
+            
+            output.innerHTML = htmlContent;
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        }
+
+        document.getElementById('toggle-theme-btn').addEventListener('click', toggleTheme);
+
+        // Set initial theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+</html>

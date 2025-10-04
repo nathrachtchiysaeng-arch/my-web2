@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โภชนาการสำหรับนักกีฬา</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero-nutrition {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 1)), url('https://images.pexels.com/photos/10325454/pexels-photo-10325454.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .hero-nutrition h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-nutrition h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-nutrition p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .content-display {
+            background-color: var(--primary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .content-display h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .nutrition-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nutrition-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .nutrition-item h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .nutrition-item p {
+            color: var(--text-secondary);
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-nutrition">
+        <h1>โภชนาการสำหรับ<span>นักกีฬา</span></h1>
+        <p>เชื้อเพลิงสำคัญสู่ความสำเร็จในสนาม</p>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← กลับสู่หน้าหลัก</a>
+
+        <section class="content-display">
+            <h2>หลักการโภชนาการที่ควรรู้</h2>
+
+            <div class="nutrition-item">
+                <h3>1. อาหารก่อนการฝึกซ้อม (2-3 ชั่วโมง)</h3>
+                <p>เน้นคาร์โบไฮเดรตเชิงซ้อน เช่น ข้าวกล้อง, ขนมปังโฮลวีท เพื่อให้มีพลังงานอย่างต่อเนื่อง หลีกเลี่ยงอาหารที่มีไขมันสูงเพราะจะย่อยยาก</p>
+            </div>
+            
+            <div class="nutrition-item">
+                <h3>2. ระหว่างการฝึกซ้อม</h3>
+                <p>ดื่มน้ำเปล่าให้เพียงพอทุก 15-20 นาที หากฝึกซ้อมนานกว่า 60-90 นาที อาจพิจารณาดื่มเครื่องดื่มเกลือแร่เพื่อชดเชยแร่ธาตุที่สูญเสียไป</p>
+            </div>
+            
+            <div class="nutrition-item">
+                <h3>3. อาหารหลังการฝึกซ้อม (ภายใน 1 ชั่วโมง)</h3>
+                <p>ช่วงเวลาทองของการฟื้นฟู! ควรทานอาหารที่มีทั้งคาร์โบไฮเดรตและโปรตีน เช่น ข้าวกับอกไก่, นมช็อกโกแลต หรือไข่ต้ม เพื่อเติมพลังงานและซ่อมแซมกล้ามเนื้อ</p>
+            </div>
+            
+            <div class="nutrition-item">
+                <h3>4. ตัวอย่างเมนูในแต่ละวัน</h3>
+                <ul>
+                    <li>**มื้อเช้า:** ข้าวโอ๊ตกับผลไม้และถั่ว, หรือไข่คนกับขนมปังโฮลวีท</li>
+                    <li>**มื้อกลางวัน:** ข้าวกับปลา, ไก่ หรือเนื้อไม่ติดมัน, สลัดผัก</li>
+                    <li>**มื้อเย็น:** ข้าวกล้องหรือมันหวาน, อกไก่ย่าง, ผักนึ่ง</li>
+                    <li>**ของว่าง:** กล้วย, โยเกิร์ต, ถั่ว, ผลไม้</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

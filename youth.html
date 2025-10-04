@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมฝึกซ้อมสำหรับเยาวชน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676; /* A vibrant green */
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+            --shadow-light: rgba(0, 230, 118, 0.1);
+            --shadow-strong: rgba(0, 230, 118, 0.2);
+        }
+
+        body.light-mode {
+            --background-dark: #f0f2f5;
+            --primary-surface: #ffffff;
+            --secondary-surface: #e5e7eb;
+            --accent-color: #00897b;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-color: #cbd5e0;
+            --shadow-strong: rgba(0, 137, 123, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 1)), url('https://images.pexels.com/photos/942872/pexels-photo-942872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        body.light-mode .hero {
+            background: linear-gradient(rgba(240, 242, 245, 0.8), rgba(240, 242, 245, 1)), url('https://images.pexels.com/photos/942872/pexels-photo-942872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        #toggle-theme-btn {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        #toggle-theme-btn:hover {
+            background-color: var(--secondary-surface);
+        }
+
+        .content-display {
+            background-color: var(--primary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        #program-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        #program-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1.5rem;
+        }
+
+        .session {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .session:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .session h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .session p {
+            color: var(--text-secondary);
+        }
+
+        .tactic-section {
+            background-color: var(--secondary-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tactic-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tactic-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .daily-tip, .weekly-challenge-section {
+            background-color: var(--secondary-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .daily-tip h2, .weekly-challenge-section h2 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .daily-tip p, .weekly-challenge-section p {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* --- Link Section Styles --- */
+        .link-section {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .link-section h4 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-strong);
+        }
+
+        .cta-link:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-strong);
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        
+        .check-in-section {
+            background-color: var(--primary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .check-in-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .check-in-btn {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .check-in-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px var(--shadow-strong);
+        }
+
+        #check-in-status {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        #check-in-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        #check-in-list li {
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            margin-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .content-display {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>โปรแกรมสำหรับ<span>เยาวชน</span></h1>
+        <p>พัฒนาทักษะเชิงลึก เสริมสร้างความแข็งแกร่งของร่างกาย และเรียนรู้แท็กติกการเล่นเพื่อก้าวสู่การเป็นนักเตะที่สมบูรณ์</p>
+    </header>
+
+    <main class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <a href="index.html" class="back-button">← กลับสู่หน้าหลัก</a>
+            <button id="toggle-theme-btn">สลับโหมด</button>
+        </div>
+
+        <section class="content-display">
+            <div id="program-content">
+                <div class="session">
+                    <h3>1. การอบอุ่นร่างกายและยืดเหยียดแบบเคลื่อนไหว (Dynamic Warm-up)</h3>
+                    <p>วิ่งวอร์ม, วิ่งสลับฟันปลา, ยกเข่าสูง, วิ่งแตะส้นเท้า และยืดเหยียดแบบเคลื่อนที่เพื่อเตรียมกล้ามเนื้อ</p>
+                </div>
+                <div class="session">
+                    <h3>2. การครองบอลและจังหวะบอลแรก (First Touch)</h3>
+                    <p>ฝึกรับลูกบอลที่มาด้วยความเร็วที่แตกต่างกัน และฝึกจับบอลให้อยู่ในระยะที่พร้อมเล่นต่อทันที</p>
+                </div>
+                <div class="session">
+                    <h3>3. การเล่นร่วมกับทีมและเกมตามสถานการณ์</h3>
+                    <p>ฝึกทำชิ่ง (One-two pass), การเล่นตามช่อง และการเคลื่อนที่แบบไม่มีบอล เพื่อสร้างโอกาสในการทำประตู</p>
+                </div>
+                <div class="session">
+                    <h3>4. สมรรถภาพร่างกาย (Physical Fitness)</h3>
+                    <p>โปรแกรมฝึกความเร็ว, ความคล่องตัว, ความแข็งแกร่งของแกนกลางลำตัว (Core) และการกระโดด</p>
+                </div>
+                <div class="tactic-section">
+                    <h2>แท็กติกการเล่น</h2>
+                    <div class="tactic-item">
+                        <h3>แท็กติกฟุตบอล 7 คน</h3>
+                        <p>ใช้ระบบ 2-3-1 เน้นการครองบอลและทำเกมจากแดนกลาง โดยมีกองหน้าตัวเดียวเป็นตัวจบสกอร์</p>
+                    </div>
+                    <div class="tactic-item">
+                        <h3>แท็กติกฟุตบอล 11 คน (ระบบยอดนิยม)</h3>
+                        <p>เรียนรู้ระบบ 4-4-2 (เน้นการเล่นปีกและรับ-รุกที่สมดุล) และระบบ 4-3-3 (เน้นเกมรุกและครองบอลในแดนคู่แข่ง)</p>
+                    </div>
+                </div>
+                <div class="link-section">
+                    <h4>ตัวอย่างรูปแบบการฝึกซ้อม</h4>
+                    <a href="https://www.youtube.com/results?search_query=football+drills+for+youth" class="cta-link" target="_blank" rel="noopener noreferrer">ดูเทคนิคการฝึกสำหรับเยาวชน</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="daily-tip">
+            <h2>คำแนะนำประจำวัน</h2>
+            <p id="daily-tip-content"></p>
+        </section>
+        
+        <section class="weekly-challenge-section">
+            <h2>ความท้าทายประจำสัปดาห์</h2>
+            <h3 id="weekly-challenge-title"></h3>
+            <p id="weekly-challenge-description"></p>
+        </section>
+
+        <section class="check-in-section">
+            <h2>เช็คอินการฝึกซ้อม</h2>
+            <p id="check-in-status">กรุณาเช็คอินเพื่อบันทึกการฝึกซ้อมของคุณ</p>
+            <button id="check-in-btn" class="check-in-btn">เช็คอินวันนี้</button>
+            <p style="margin-top: 1.5rem; color: var(--text-secondary);">ประวัติการเช็คอิน:</p>
+            <ul id="check-in-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>สร้างโดย ณัฐรัชต์ ไชยแสง | &copy; 2025 TRAIN LIKE A PRO</p>
+    </footer>
+
+    <script>
+        const tips = [
+            "การอบอุ่นร่างกายที่เหมาะสม ช่วยป้องกันอาการบาดเจ็บได้ถึง 70%",
+            "ฝึกเลี้ยงลูกบอลด้วยเท้าทั้งสองข้างเป็นประจำ จะทำให้คุณควบคุมเกมได้ดีขึ้น",
+            "การเล่นในพื้นที่จำกัด ช่วยพัฒนาการตัดสินใจและการมองเห็นในเกม",
+            "ดื่มน้ำให้เพียงพอก่อน ระหว่าง และหลังการฝึกซ้อมเพื่อประสิทธิภาพสูงสุด",
+            "ฝึกการยิงประตูจากหลายมุม จะช่วยเพิ่มโอกาสในการทำคะแนน",
+            "การสื่อสารกับเพื่อนร่วมทีมเป็นกุญแจสำคัญสู่ชัยชนะ",
+            "การพักผ่อนอย่างเพียงพอ สำคัญไม่แพ้กับการฝึกซ้อม"
+        ];
+        
+        const weeklyChallenges = [
+            { title: "ฝึกเลี้ยงบอล 30 นาที", desc: "ใช้เท้าทั้งสองข้างเลี้ยงลูกบอลในพื้นที่จำกัดให้ครบ 30 นาทีต่อสัปดาห์" },
+            { title: "วิ่งรอบสนาม 10 รอบ", desc: "วิ่งรอบสนามฟุตบอลให้ครบ 10 รอบ เพื่อเพิ่มความทนทาน" },
+            { title: "การยิงประตูที่แม่นยำ", desc: "ฝึกยิงประตูเข้าเป้าหมายเล็กๆ จากระยะ 10 เมตร ให้ได้ 5 ลูกติดต่อกัน" }
+        ];
+
+        function getWeekNumber(d) {
+            d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+            d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+            return weekNo;
+        }
+
+        function displayDailyTip() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const tipIndex = dayOfYear % tips.length;
+            document.getElementById('daily-tip-content').textContent = tips[tipIndex];
+        }
+        
+        function displayWeeklyChallenge() {
+            const today = new Date();
+            const weekNumber = getWeekNumber(today);
+            const challengeIndex = weekNumber % weeklyChallenges.length;
+            const challenge = weeklyChallenges[challengeIndex];
+            document.getElementById('weekly-challenge-title').textContent = challenge.title;
+            document.getElementById('weekly-challenge-description').textContent = challenge.desc;
+        }
+
+        // Check-in System
+        function getCheckIns() {
+            const checkIns = localStorage.getItem('checkIns');
+            return checkIns ? JSON.parse(checkIns) : [];
+        }
+
+        function displayCheckIns() {
+            const checkIns = getCheckIns();
+            const list = document.getElementById('check-in-list');
+            list.innerHTML = '';
+            if (checkIns.length > 0) {
+                checkIns.forEach(date => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = date;
+                    list.appendChild(listItem);
+                });
+            }
+        }
+        
+        // Updated checkIn function to send data to a server
+        async function checkIn() {
+            const today = new Date();
+            const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
+            
+            const checkIns = getCheckIns();
+            
+            if (checkIns.includes(formattedDate)) {
+                document.getElementById('check-in-status').textContent = 'คุณเช็คอินวันนี้ไปแล้ว!';
+                return;
+            }
+
+            // Data to be sent to the server
+            const checkInData = {
+                date: formattedDate,
+                ageGroup: 'youth' // You can add more data here if needed
+            };
+
+            // This part requires a server-side script to receive the data
+            // REPLACE 'https://your-server.com/api/checkin' with your actual server endpoint
+            try {
+                const response = await fetch('https://your-server.com/api/checkin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(checkInData)
+                });
+                
+                if (response.ok) {
+                    console.log('Check-in data sent successfully.');
+                } else {
+                    console.error('Failed to send check-in data.');
+                }
+            } catch (error) {
+                console.error('Error sending check-in data:', error);
+            }
+            
+            // Still save to local storage for user's history display
+            checkIns.push(formattedDate);
+            localStorage.setItem('checkIns', JSON.stringify(checkIns));
+            
+            document.getElementById('check-in-status').textContent = `เช็คอินสำเร็จ! วันที่ ${formattedDate}`;
+            displayCheckIns();
+        }
+
+        document.getElementById('check-in-btn').addEventListener('click', checkIn);
+        
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        }
+
+        document.getElementById('toggle-theme-btn').addEventListener('click', toggleTheme);
+        
+        // Set initial theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        
+        // Initial load
+        displayDailyTip();
+        displayCheckIns();
+        displayWeeklyChallenge();
+    </script>
+</body>
+</html>

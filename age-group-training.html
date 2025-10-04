@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมตามช่วงอายุ | TRAIN LIKE A PRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+            --shadow-strong: rgba(0, 230, 118, 0.2);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: var(--primary-surface);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--shadow-strong);
+            text-align: left;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .age-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .age-button {
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .age-button.active,
+        .age-button:hover {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-strong);
+        }
+
+        .program-content {
+            background-color: var(--secondary-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .program-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .program-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .program-content p, .program-content li {
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+        
+        .tactic-section {
+            margin-top: 2rem;
+        }
+
+        .tactic-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tactic-item {
+            background-color: var(--primary-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .link-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-strong);
+        }
+        
+        .cta-link:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-strong);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <a href="index.html" class="back-link">กลับหน้าหลัก</a>
+        </div>
+        <h1>โปรแกรมฝึกซ้อมตามช่วงอายุ</h1>
+        <p style="text-align: center; color: var(--text-secondary);">
+            พัฒนาทักษะที่เหมาะสมกับวัย เพื่อก้าวไปสู่การเป็นนักเตะที่สมบูรณ์แบบ
+        </p>
+
+        <div class="age-tabs">
+            <button id="kids-btn" class="age-button active">6 - 12 ปี</button>
+            <button id="teens-btn" class="age-button">13 - 18 ปี</button>
+            <button id="adults-btn" class="age-button">19+ ปี</button>
+        </div>
+
+        <div class="program-content">
+            <h2 id="program-title"></h2>
+            <div id="program-details">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const programData = {
+            kids: {
+                title: "วัยเยาว์ (6 - 12 ปี)",
+                description: "ช่วงวัยที่เน้นการพัฒนาพื้นฐานการเคลื่อนไหว, การสัมผัสบอล, และการปลูกฝังความรักในกีฬาฟุตบอล",
+                skills: [
+                    "การเลี้ยงบอลและควบคุมบอล (Dribbling & Ball Control)",
+                    "การรับส่งบอล (Passing & Receiving)",
+                    "การยิงประตู (Shooting)"
+                ],
+                tactics: [
+                    { title: "สนุกกับการเล่น", details: "เกมฝึกซ้อมควรมีรูปแบบที่สนุกสนานและจูงใจ ให้เด็กได้เรียนรู้ผ่านการเล่น" },
+                    { title: "การตัดสินใจในเกม", details: "ฝึกให้เด็กเริ่มคิดและตัดสินใจในสถานการณ์ที่หลากหลาย" }
+                ]
+            },
+            teens: {
+                title: "วัยรุ่น (13 - 18 ปี)",
+                description: "ช่วงวัยที่เน้นการพัฒนาทักษะเฉพาะด้าน, ความแข็งแกร่งของร่างกาย, และความเข้าใจในแท็กติกที่ซับซ้อนขึ้น",
+                skills: [
+                    "เทคนิคขั้นสูง (Advanced Techniques)",
+                    "ความฟิตและความแข็งแรง (Fitness & Strength)",
+                    "การเล่นเป็นทีม (Team Play)"
+                ],
+                tactics: [
+                    { title: "การยืนตำแหน่งและการเคลื่อนที่", details: "เรียนรู้บทบาทในแต่ละตำแหน่งและวิธีการเคลื่อนที่อย่างมีประสิทธิภาพ" },
+                    { title: "เกมรับและเกมรุก", details: "เข้าใจหลักการป้องกันและโจมตีในสถานการณ์ต่างๆ" }
+                ]
+            },
+            adults: {
+                title: "วัยผู้ใหญ่ (19+ ปี)",
+                description: "เน้นการรักษาความฟิต, การพัฒนาความเข้าใจในเกม, และการนำความรู้ไปใช้ในการแข่งขันจริง",
+                skills: [
+                    "ความเข้าใจในเกม (Game Intelligence)",
+                    "ความทนทานของร่างกาย (Endurance)",
+                    "การฟื้นตัว (Recovery)"
+                ],
+                tactics: [
+                    { title: "การวิเคราะห์คู่แข่ง", details: "เรียนรู้วิธีการอ่านและวิเคราะห์จุดอ่อนของคู่แข่ง" },
+                    { title: "ภาวะผู้นำ", details: "พัฒนาทักษะการเป็นผู้นำเพื่อช่วยกระตุ้นเพื่อนร่วมทีม" }
+                ]
+            }
+        };
+
+        const buttons = document.querySelectorAll('.age-button');
+        const programTitleElem = document.getElementById('program-title');
+        const programDetailsElem = document.getElementById('program-details');
+
+        function displayProgram(ageGroup) {
+            const program = programData[ageGroup];
+            programTitleElem.textContent = program.title;
+
+            let htmlContent = `<p>${program.description}</p>`;
+
+            // === Add Skills Section ===
+            htmlContent += `<div class="skill-section"><h3>ทักษะที่มุ่งเน้น</h3><ul>`;
+            program.skills.forEach(skill => {
+                htmlContent += `<li>${skill}</li>`;
+            });
+            htmlContent += `</ul></div>`;
+
+            // === Add Tactics Section ===
+            if (program.tactics) {
+                htmlContent += `<div class="tactic-section"><h2>แท็กติกการเล่น</h2>`;
+                program.tactics.forEach(tactic => {
+                    htmlContent += `
+                        <div class="tactic-item">
+                            <h3>${tactic.title}</h3>
+                            <p>${tactic.details}</p>
+                        </div>`;
+                });
+                htmlContent += `</div>`;
+            }
+
+            programDetailsElem.innerHTML = htmlContent;
+        }
+
+        function handleButtonClick(event) {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const ageGroup = event.target.id.replace('-btn', '');
+            displayProgram(ageGroup);
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', handleButtonClick);
+        });
+
+        // Initial display
+        displayProgram('kids');
+    </script>
+</body>
+</html>
