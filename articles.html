@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ฃ<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,8 @@
 
         .header-controls {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
         }
 
@@ -60,7 +61,28 @@
             background-color: var(--border-color);
             color: var(--text-primary);
         }
-        
+
+        .search-bar {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        #search-input {
+            width: 100%;
+            max-width: 250px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+        }
+
+        #search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
         h1 {
             color: var(--accent-color);
             text-align: center;
@@ -83,6 +105,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: var(--text-primary);
+            cursor: pointer;
         }
 
         .article-card:hover {
@@ -138,6 +161,69 @@
             border: 1px solid var(--border-color);
             margin-bottom: 10px;
         }
+
+        .comments-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .comments-section h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .comment-form input, .comment-form textarea {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--primary-surface);
+            color: var(--text-primary);
+            font-family: 'Kanit', sans-serif;
+            resize: vertical;
+        }
+
+        .comment-form button {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #00b359;
+        }
+
+        .comment {
+            background-color: var(--primary-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
@@ -145,6 +231,9 @@
     <div class="container">
         <div class="header-controls">
             <a href="index.html" class="back-link">กลับหน้าหลัก</a>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ค้นหาบทความ...">
+            </div>
         </div>
         <h1>บทความและเคล็ดลับจากผู้เชี่ยวชาญ</h1>
         <p style="text-align: center; color: var(--text-secondary);">
@@ -155,7 +244,21 @@
             </div>
 
         <div id="article-content" class="article-content-page" style="display:none;">
+            <div class="comments-section">
+                <h3>แสดงความคิดเห็น</h3>
+                <form class="comment-form" onsubmit="return false;">
+                    <input type="text" placeholder="ชื่อของคุณ" required>
+                    <textarea placeholder="ข้อความ" rows="4" required></textarea>
+                    <button type="submit">ส่งความคิดเห็น</button>
+                </form>
+                <div class="comments-list">
+                    <div class="comment">
+                        <div class="comment-author">ผู้เยี่ยมชม</div>
+                        <div class="comment-text">บทความมีประโยชน์มากเลยครับ!</div>
+                    </div>
+                </div>
             </div>
+        </div>
 
     </div>
 
@@ -190,26 +293,60 @@
                         <li><strong>คูลดาวน์ (Cool-down):</strong> หลังการฝึกซ้อม ควรวิ่งเบาๆ และตามด้วยการยืดเหยียดแบบค้าง (Static Stretching) เช่น การยืดกล้ามเนื้อต้นขาด้านหลังและด้านหน้า ค้างไว้ท่าละ 20-30 วินาที เพื่อช่วยให้กล้ามเนื้อผ่อนคลายและลดอาการปวดเมื่อย</li>
                     </ul>
                 `
+            },
+            {
+                id: 'sports-psychology',
+                title: 'จิตวิทยาในเกม: สร้างความแข็งแกร่งทางใจให้เหนือกว่าคู่แข่ง',
+                date: '15 ตุลาคม 2568',
+                summary: 'ความสำเร็จในสนามไม่ได้มาจากร่างกายที่แข็งแกร่งเพียงอย่างเดียว แต่จิตใจที่แข็งแกร่งก็สำคัญไม่แพ้กัน',
+                content: `
+                    <p>ฟุตบอลเป็นกีฬาที่ต้องอาศัยทั้งทักษะทางกายและทักษะทางใจ การเตรียมตัวทางจิตวิทยาจะช่วยให้คุณรับมือกับสถานการณ์ต่างๆ ได้ดีขึ้น</p>
+                    <h3>เทคนิคทางจิตวิทยา:</h3>
+                    <ul>
+                        <li><strong>การตั้งเป้าหมาย:</strong> ตั้งเป้าหมายที่ชัดเจนและวัดผลได้ ทั้งในระยะสั้น (เช่น การเลี้ยงบอลให้สำเร็จ 3 ครั้งต่อเกม) และระยะยาว</li>
+                        <li><strong>การสร้างสมาธิ:</strong> ฝึกสมาธิเพื่อโฟกัสอยู่กับเกมและตัดสิ่งรบกวนภายนอกออกไป</li>
+                        <li><strong>การจัดการความเครียด:</strong> เรียนรู้ที่จะจัดการกับความกดดันและความตื่นเต้นก่อนการแข่งขัน</li>
+                        <li><strong>การมองโลกในแง่บวก:</strong> เปลี่ยนความคิดลบให้เป็นพลังบวก เช่น เปลี่ยน "ฉันทำพลาดไม่ได้" เป็น "ฉันจะเรียนรู้จากความผิดพลาด"</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'proper-recovery',
+                title: 'การฟื้นตัวที่เหมาะสม: กุญแจสำคัญสู่การพัฒนาอย่างต่อเนื่อง',
+                date: '20 ตุลาคม 2568',
+                summary: 'ร่างกายจะพัฒนาได้ดีที่สุดในช่วงเวลาพักผ่อน การฟื้นตัวจึงสำคัญพอๆ กับการฝึกซ้อม',
+                content: `
+                    <p>นักกีฬาหลายคนมุ่งเน้นแต่การฝึกซ้อมอย่างหนัก แต่ละเลยการฟื้นตัว ซึ่งเป็นช่วงที่ร่างกายซ่อมแซมและพัฒนาตัวเอง</p>
+                    <h3>การฟื้นตัวอย่างมีประสิทธิภาพ:</h3>
+                    <ul>
+                        <li><strong>การนอนหลับ:</strong> ควรนอนหลับให้เพียงพอ 7-9 ชั่วโมงต่อคืน เพื่อให้กล้ามเนื้อและระบบประสาทได้พักผ่อนอย่างเต็มที่</li>
+                        <li><strong>โภชนาการหลังฝึกซ้อม:</strong> ภายใน 30-60 นาทีหลังฝึกซ้อม ควรทานอาหารที่มีคาร์โบไฮเดรตและโปรตีนเพื่อเติมพลังงานและซ่อมแซมกล้ามเนื้อ</li>
+                        <li><strong>การนวดและยืดกล้ามเนื้อ:</strong> ช่วยลดอาการปวดเมื่อยและเพิ่มความยืดหยุ่นของกล้ามเนื้อ</li>
+                        <li><strong>การทำ Ice Bath หรือ Cool-down:</strong> ช่วยลดอาการอักเสบและช่วยให้ร่างกายฟื้นตัวได้เร็วขึ้น</li>
+                    </ul>
+                `
             }
         ];
 
         const articlesListElem = document.getElementById('articles-list');
         const articleContentElem = document.getElementById('article-content');
+        const searchInput = document.getElementById('search-input');
         const containerElem = document.querySelector('.container');
 
-        function displayArticlesList() {
+        function displayArticlesList(filteredArticles = articles) {
             articlesListElem.innerHTML = '';
-            articles.forEach(article => {
-                const articleCard = document.createElement('a');
-                articleCard.href = `#${article.id}`;
+            if (filteredArticles.length === 0) {
+                articlesListElem.innerHTML = `<p style="text-align:center; color: var(--text-secondary);">ไม่พบบทความที่ตรงกับที่ค้นหา</p>`;
+            }
+            filteredArticles.forEach(article => {
+                const articleCard = document.createElement('div');
                 articleCard.className = 'article-card';
                 articleCard.innerHTML = `
                     <h2>${article.title}</h2>
                     <p>${article.summary}</p>
                     <small>เผยแพร่เมื่อ: ${article.date}</small>
                 `;
-                articleCard.addEventListener('click', (e) => {
-                    e.preventDefault();
+                articleCard.addEventListener('click', () => {
                     displayArticleContent(article.id);
                 });
                 articlesListElem.appendChild(articleCard);
@@ -228,33 +365,43 @@
             articleContentElem.innerHTML = `
                 <div class="header-controls">
                     <a href="articles.html" class="back-link">กลับสู่บทความทั้งหมด</a>
+                    <div class="search-bar">
+                        <input type="text" id="search-input-content" placeholder="ค้นหาบทความ...">
+                    </div>
                 </div>
                 <h2>${article.title}</h2>
                 <small style="display: block; text-align: left; margin-bottom: 20px;">เผยแพร่เมื่อ: ${article.date}</small>
                 ${article.content}
+                <div class="comments-section">
+                    <h3>แสดงความคิดเห็น</h3>
+                    <form class="comment-form" onsubmit="return false;">
+                        <input type="text" placeholder="ชื่อของคุณ" required>
+                        <textarea placeholder="ข้อความ" rows="4" required></textarea>
+                        <button type="submit">ส่งความคิดเห็น</button>
+                    </form>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <div class="comment-author">ผู้เยี่ยมชม</div>
+                            <div class="comment-text">บทความมีประโยชน์มากเลยครับ!</div>
+                        </div>
+                    </div>
+                </div>
             `;
             articlesListElem.style.display = 'none';
             articleContentElem.style.display = 'block';
             window.scrollTo(0, 0); // Scroll to top
         }
 
-        // Handle navigation via URL hash
-        window.addEventListener('hashchange', () => {
-            const articleId = window.location.hash.substring(1);
-            if (articleId) {
-                displayArticleContent(articleId);
-            } else {
-                displayArticlesList();
-            }
+        searchInput.addEventListener('input', (event) => {
+            const searchTerm = event.target.value.toLowerCase();
+            const filteredArticles = articles.filter(article =>
+                article.title.toLowerCase().includes(searchTerm) ||
+                article.summary.toLowerCase().includes(searchTerm)
+            );
+            displayArticlesList(filteredArticles);
         });
-
-        // Initial page load check
-        if (window.location.hash) {
-            displayArticleContent(window.location.hash.substring(1));
-        } else {
-            displayArticlesList();
-        }
-
+        
+        displayArticlesList();
     </script>
 </body>
 </html>

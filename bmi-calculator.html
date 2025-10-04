@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณ BMI | TRAIN LIKE A PRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --background-dark: #121212;
+            --primary-surface: #1e1e1e;
+            --secondary-surface: #2a2a2a;
+            --accent-color: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333333;
+            --border-radius: 10px;
+            --shadow-strong: rgba(0, 230, 118, 0.2);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: var(--primary-surface);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--shadow-strong);
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: var(--secondary-surface);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .input-group {
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--secondary-surface);
+            color: var(--text-primary);
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00b359;
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--secondary-surface);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        #result h3 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        #result p {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <a href="index.html" class="back-link">กลับหน้าหลัก</a>
+        </div>
+        <h1>เครื่องมือคำนวณ BMI</h1>
+        <p style="color: var(--text-secondary);">
+            BMI (Body Mass Index) ใช้ประเมินความสมส่วนของร่างกาย
+        </p>
+
+        <form class="calculator-form" onsubmit="return false;">
+            <div class="input-group">
+                <label for="weight">น้ำหนัก (กิโลกรัม):</label>
+                <input type="number" id="weight" step="0.1" required>
+            </div>
+            <div class="input-group">
+                <label for="height">ส่วนสูง (เซนติเมตร):</label>
+                <input type="number" id="height" step="0.1" required>
+            </div>
+            <button type="submit" onclick="calculateBMI()">คำนวณ</button>
+        </form>
+
+        <div id="result" style="display: none;">
+            <h3 id="bmi-value"></h3>
+            <p id="bmi-status"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const resultDiv = document.getElementById('result');
+            const bmiValueElem = document.getElementById('bmi-value');
+            const bmiStatusElem = document.getElementById('bmi-status');
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                alert("กรุณากรอกข้อมูลให้ถูกต้อง");
+                return;
+            }
+
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+            
+            let status = "";
+            if (bmi < 18.5) {
+                status = "น้ำหนักต่ำกว่าเกณฑ์";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                status = "น้ำหนักปกติ";
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                status = "น้ำหนักเกิน";
+            } else {
+                status = "อ้วน";
+            }
+
+            bmiValueElem.textContent = bmi.toFixed(2);
+            bmiStatusElem.textContent = status;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
