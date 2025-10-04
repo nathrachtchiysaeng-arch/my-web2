@@ -62,12 +62,29 @@
         }
 
         h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--accent-color);
             text-align: center;
             margin-bottom: 20px;
-            font-weight: 800;
         }
         
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
         .age-tabs {
             display: flex;
             justify-content: center;
@@ -103,22 +120,6 @@
             border-radius: var(--border-radius);
             border: 1px solid var(--border-color);
             margin-top: 2rem;
-        }
-
-        .program-content h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-        
-        .program-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
         }
         
         .program-content p, .program-content li {
@@ -174,7 +175,7 @@
         </div>
         <h1>โปรแกรมฝึกซ้อมตามช่วงอายุ</h1>
         <p style="text-align: center; color: var(--text-secondary);">
-            พัฒนาทักษะที่เหมาะสมกับวัย เพื่อก้าวไปสู่การเป็นนักเตะที่สมบูรณ์แบบ
+            พัฒนาทักษะที่เหมาะสมกับวัย เพื่อก้าวสู่การเป็นนักเตะที่สมบูรณ์แบบ
         </p>
 
         <div class="age-tabs">
@@ -194,7 +195,7 @@
         const programData = {
             kids: {
                 title: "วัยเยาว์ (6 - 12 ปี)",
-                description: "ช่วงวัยที่เน้นการพัฒนาพื้นฐานการเคลื่อนไหว, การสัมผัสบอล, และการปลูกฝังความรักในกีฬาฟุตบอล",
+                description: "ช่วงวัยที่เน้นการพัฒนาพื้นฐานการเคลื่อนไหว, การสัมผัสบอล, และปลูกฝังความรักในกีฬาฟุตบอล",
                 skills: [
                     "การเลี้ยงบอลและควบคุมบอล (Dribbling & Ball Control)",
                     "การรับส่งบอล (Passing & Receiving)",
@@ -207,7 +208,7 @@
             },
             teens: {
                 title: "วัยรุ่น (13 - 18 ปี)",
-                description: "ช่วงวัยที่เน้นการพัฒนาทักษะเฉพาะด้าน, ความแข็งแกร่งของร่างกาย, และความเข้าใจในแท็กติกที่ซับซ้อนขึ้น",
+                description: "เน้นการพัฒนาทักษะเฉพาะด้าน, ความแข็งแกร่งของร่างกาย, และความเข้าใจในแท็กติกที่ซับซ้อน",
                 skills: [
                     "เทคนิคขั้นสูง (Advanced Techniques)",
                     "ความฟิตและความแข็งแรง (Fitness & Strength)",
@@ -220,7 +221,7 @@
             },
             adults: {
                 title: "วัยผู้ใหญ่ (19+ ปี)",
-                description: "เน้นการรักษาความฟิต, การพัฒนาความเข้าใจในเกม, และการนำความรู้ไปใช้ในการแข่งขันจริง",
+                description: "เน้นการรักษาความฟิต, พัฒนาความเข้าใจในเกม, และการนำความรู้ไปใช้ในการแข่งขันจริง",
                 skills: [
                     "ความเข้าใจในเกม (Game Intelligence)",
                     "ความทนทานของร่างกาย (Endurance)",
